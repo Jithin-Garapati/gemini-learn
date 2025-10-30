@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Gemini Learn
+
+An AI-powered learning platform designed to improve the user experience of learning with chatbots. Built with Next.js and Google's Gemini API.
+
+## Problem
+
+When students use AI chatbots to learn complex topics, they often encounter unfamiliar terms in the explanations. The current solution requires opening a new chat, which breaks the learning flow and loses context.
+
+## Solution
+
+Gemini Learn introduces Guided Learning, a feature that lets users highlight any term and press Ctrl+Shift+E to open a focused subchat. This provides instant, contextual explanations without disrupting the main conversation.
+
+## Key Features
+
+- Contextual learning with floating subchats
+- Smooth streaming responses from Gemini 2.0 Flash
+- Markdown rendering with syntax-highlighted code blocks
+- Keyboard-first interaction (Ctrl+Shift+E)
+- Clean, minimal interface with dark mode support
 
 ## Getting Started
 
-First, run the development server:
-
+1. Clone the repository
+2. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+3. Create a `.env.local` file and add your Gemini API key:
+```
+GOOGLE_GENERATIVE_AI_API_KEY=your_api_key_here
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+4. Run the development server:
+```bash
+npm run dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+5. Open [http://localhost:3000](http://localhost:3000) in your browser
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- Next.js 16
+- React
+- TypeScript
+- Vercel AI SDK v5
+- Google Gemini 2.0 Flash
+- Tailwind CSS
+- shadcn/ui components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## UX Improvements
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+This project focuses on solving real user experience problems in AI-powered learning:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Maintains conversation context while exploring new concepts
+- Reduces cognitive load by keeping related information visible
+- Provides quick, concise explanations to avoid information overload
+- Uses familiar keyboard shortcuts for efficient interaction
+- Implements smooth animations and transitions for better flow

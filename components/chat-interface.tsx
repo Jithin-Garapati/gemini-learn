@@ -20,7 +20,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 
 export function ChatInterface() {
-  const { messages, sendMessage, isLoading, error } = useChat({
+  const { messages, sendMessage } = useChat({
   id: 'main-chat',
   transport: new DefaultChatTransport({
     api: '/api/chat',
@@ -37,11 +37,13 @@ export function ChatInterface() {
   }
 });
 
+// Track loading state manually
+const [isLoading, setIsLoading] = useState(false);
+
 // Debug logging
 console.log('sendMessage:', sendMessage);
 console.log('Current messages:', messages);
 console.log('Loading state:', isLoading);
-console.log('Error state:', error);
 
 // Input state management
 const [input, setInput] = useState('');
@@ -63,6 +65,7 @@ const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     console.log('Submitting message:', input);
     console.log('Messages before send:', messages);
     
+    setIsLoading(true);
     try {
       // Use the AI SDK's sendMessage
       await sendMessage({ text: input });
@@ -71,6 +74,8 @@ const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
       console.log('Input cleared');
     } catch (error) {
       console.error('Error sending message:', error);
+    } finally {
+      setIsLoading(false);
     }
   };
 

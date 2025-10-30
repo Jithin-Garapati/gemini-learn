@@ -50,7 +50,8 @@ function SubChat({ highlightedText, context, onClose }: SubChatProps) {
     }),
   });
   
-  const { messages, sendMessage, isLoading } = chat;
+  const { messages, sendMessage } = chat;
+  const [isLoading, setIsLoading] = useState(false);
 
   // Auto-send initial explanation request
   const [hasInitialized, setHasInitialized] = useState(false);
@@ -74,11 +75,19 @@ function SubChat({ highlightedText, context, onClose }: SubChatProps) {
 
   const [input, setInput] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!input.trim()) return;
-    sendMessage({ text: input });
-    setInput('');
+    
+    setIsLoading(true);
+    try {
+      await sendMessage({ text: input });
+      setInput('');
+    } catch (error) {
+      console.error('Subchat error:', error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
